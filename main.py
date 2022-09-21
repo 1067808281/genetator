@@ -41,6 +41,7 @@ def collect_data():
     return df.reset_index()
 
 
+
 def pandas_candlestick_ohlc(stock_data,  filename,otherseries=None):
     # 设置绘图参数，主要是坐标轴
     mondays = WeekdayLocator(MONDAY)
