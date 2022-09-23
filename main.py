@@ -25,15 +25,14 @@ DATABASE = 'StockDatabase'
 
 
 def collect_data():
-    tech_list = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
-    tech_list = ['AAPL', 'GOOG', 'MSFT', 'AMZN']
+    tech_list = ['AAPL', 'GOOG', 'MSFT', 'AMZN','BABA','TSLA']
     end = datetime.now()
     start = datetime(end.year, end.month - 1, 30 - end.day)
     print('FETCHING DATA...')
     for stock in tech_list:
         globals()[stock] = yf.download(stock, start, end)
-    company_list = [AAPL, GOOG, MSFT, AMZN]
-    company_name = ["APPLE", "GOOGLE", "MICROSOFT", "AMAZON"]
+    company_list = [AAPL, GOOG, MSFT, AMZN, BABA, TSLA]
+    company_name = ["APPLE", "GOOGLE", "MICROSOFT", "AMAZON", 'ALIBABA', 'TESLA']
     for company, com_name in zip(company_list, company_name):
         company["company_name"] = com_name
     df = pd.concat(company_list, axis=0)
@@ -117,7 +116,7 @@ def store_pic(filename):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     df_new = collect_data()
-    filenames = ["'APPLE'", "'GOOGLE'", "'MICROSOFT'", "'AMAZON'"]
+    filenames = ["'APPLE'", "'GOOGLE'", "'MICROSOFT'", "'AMAZON'","'ALIBABA'","'TESLA'"]
     for i in range(len(filenames)):
         df_Company =df_new.query("company_name ==" + filenames[i])
         #df_Company = df_new.query("company_name == 'APPLE'")
